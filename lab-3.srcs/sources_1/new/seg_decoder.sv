@@ -1,14 +1,14 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: UCF EEL5722C with Dr. Lin
+// Engineer: Alexander Hatzilias
 // 
-// Create Date: 08/28/2024 12:13:51 PM
-// Design Name: 
-// Module Name: SegDecoder
+// Create Date: 09/01/2024 02:09:29 PM
+// Design Name: Basys 3 Keyboard Input Driver 
+// Module Name: seg_decoder
 // Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Target Devices: Digilent Basys 3 (Artix 7) 
+// Tool Versions: Vivado 2024
 // Description: 
 // 
 // Dependencies: 
@@ -22,15 +22,16 @@
 
 
 
+
 module seg_decoder(
     input clk            , 
-    input  [3:0] butcnt  , 
+    input  [3:0] digit  , 
     output logic [7:0] cathode 
     );
 
   // Convert binary to decimal 7 segment display 
   always @ (posedge clk) begin
-    case(butcnt)
+    case(digit)
          4'd0   : cathode = 8'b00000011;
          4'd1   : cathode = 8'b10011111; 
          4'd2   : cathode = 8'b00100101;
@@ -41,7 +42,8 @@ module seg_decoder(
          4'd7   : cathode = 8'b00011111;
          4'd8   : cathode = 8'b00000001;     
          4'd9   : cathode = 8'b00011001;
-        default : cathode = 8'b11111100;
+         4'd15  : cathode = 8'b01100001; // Error (display's E)
+        default : cathode = 8'b11111111;
     endcase
    end
 endmodule

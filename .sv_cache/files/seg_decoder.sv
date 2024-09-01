@@ -1,0 +1,1 @@
+/media/alex/secondaryLinux/FPGALAB/lab3/lab-3.srcs/sources_1/new/seg_decoder.sv
