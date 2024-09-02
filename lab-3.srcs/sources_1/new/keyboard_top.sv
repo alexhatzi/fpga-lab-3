@@ -23,7 +23,6 @@ module kbd_top (
     logic [1:0] err         ;
     logic [3:0] digit       ;
     logic       display_clk ;    
-    logic [7:0] cathode_o   ;
 
     ps2input u_ps2input 
     (   .clk          (clk         )   // Logic clk in 
@@ -46,7 +45,7 @@ module kbd_top (
     seg_decoder u_seg_decoder           // Translate binary/decimal values to 7 segment display signals
     (   .clk           (clk       )
     ,   .digit         (digit     )
-    ,   .cathode       (cathode_o )
+    ,   .cathode       (cathode      )
     ) ; 
 
 
@@ -59,9 +58,6 @@ module kbd_top (
 
    assign anode = 4'b1110 ; // Only and always using the single (rightmost) digit on 7 segment display
 
-   always@(posedge display_clk) begin
-        cathode <= cathode_o  ;
-   end
     
 
 

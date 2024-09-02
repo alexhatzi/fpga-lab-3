@@ -1,0 +1,1 @@
+/media/alex/secondaryLinux/FPGALAB/lab3/lab-3.srcs/sim_1/new/top_tb.sv

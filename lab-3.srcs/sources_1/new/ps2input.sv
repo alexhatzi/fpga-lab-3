@@ -38,11 +38,14 @@ module ps2input(
 
 
 
-    always@(posedge clk) begin
+    always@(negedge clk) begin
         kbd_clk_d <= kbd_clk ; 
      case(KBD_STATE)
 
         IDLE :  begin
+                bit_loc       <= '0   ; 
+                error_detect  <= '0   ; 
+                key           <= '0   ; 
                 if(kbd_data == '0) begin
                  if(kbd_clk_d & (~kbd_clk)) begin // negedge of kbd_clk
                      KBD_STATE <= ACTIVE ; 
@@ -51,11 +54,11 @@ module ps2input(
                 end
 
       ACTIVE :  begin
-                if(kbd_clk_d & (~kbd_clk)) begin
-                 if ( (bit_loc == 4'd10) && (kbd_data == '0)) begin  // 10th negedge after start is the stop conidition
+                if(kbd_clk_d & (~kbd_clk)) begin // Negative edge of kbd_clk
+                 if ( (bit_loc == 4'd9) && (kbd_data == '1)) begin  // 10th negedge after start is the stop conidition
                      KBD_STATE  <= STOP ; 
                  end
-                 else if (bit_loc == 4'd10) begin // Major error, buffer filled without stop condition (10th negedge of clk but data is still high)
+                 else if (bit_loc == 4'd9) begin // Major error, buffer filled without stop condition (10th negedge of clk but data is still high)
                     error_detect <= 2'd2 ; 
                  end
                  else begin
@@ -67,7 +70,7 @@ module ps2input(
 
         STOP :  begin
                 bit_loc <= '0 ; 
-                if ( !(^(kbd_buffer[7:0]))  == kbd_buffer[8]  ) begin // If parity matches
+                if ( (^(kbd_buffer[7:0]))  == kbd_buffer[8]  ) begin // If parity matches
                     dvld         <= 1'b1 ; 
                     error_detect <= 1'b0 ; 
                 end else begin
@@ -77,6 +80,13 @@ module ps2input(
                 key [7:0]   = kbd_buffer[7:0] ; // Send buffer out
                 kbd_buffer  = '0              ; // Clear buffer
                 KBD_STATE   = IDLE            ; // Wait for new input
+                end
+
+      default : begin
+                dvld          = '0   ;  
+                error_detect  = '0   ; 
+                key           = '0   ; 
+                KBD_STATE     = IDLE ; 
                 end
 
         endcase
