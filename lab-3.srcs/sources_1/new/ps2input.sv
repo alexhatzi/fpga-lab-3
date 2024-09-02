@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: UCF EEL5722C with Dr. Lin
 // Engineer: Alexander Hatzilias
@@ -30,25 +29,29 @@ module ps2input(
     );
 
     logic [8:0] kbd_buffer ; 
+    logic       kbd_clk_d  ;
+    logic [3:0] bit_loc    ;       // Used to index through key data buffer
 
     typedef enum  {IDLE,ACTIVE,STOP} kbd_state_t ;   
     kbd_state_t KBD_STATE ;
 
-    logic [3:0] bit_loc ;       // Used to index through key data buffer
+
+
 
     always@(posedge clk) begin
+        kbd_clk_d <= kbd_clk ; 
      case(KBD_STATE)
 
         IDLE :  begin
                 if(kbd_data == '0) begin
-                 @(negedge kbd_clk) begin
+                 if(kbd_clk_d & (~kbd_clk)) begin // negedge of kbd_clk
                      KBD_STATE <= ACTIVE ; 
                  end
                 end
                 end
 
       ACTIVE :  begin
-                @(negedge kbd_clk) begin
+                if(kbd_clk_d & (~kbd_clk)) begin
                  if ( (bit_loc == 4'd10) && (kbd_data == '0)) begin  // 10th negedge after start is the stop conidition
                      KBD_STATE  <= STOP ; 
                  end

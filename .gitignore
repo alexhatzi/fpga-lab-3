@@ -6,3 +6,7 @@ lab-3.xpr
 vivado.jou
 vivado_pid283825.str
 *.log
+*.xml
+*.swp
+lab-3.runs/
+.Xil/*

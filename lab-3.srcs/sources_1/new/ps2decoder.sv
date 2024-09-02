@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: UCF EEL5722C with Dr. Lin
 // Engineer: Alexander Hatzilias
@@ -23,8 +22,8 @@
 module ps2decoder (
     input  clk
    ,input  logic [7:0]  key
-   ,input  logic  error_detect
    ,input  logic dvld 
+   ,input  logic  error_detect
    ,output logic [3:0] digit
 );
 
