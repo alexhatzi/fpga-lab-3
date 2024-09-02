@@ -24,8 +24,8 @@ module ps2input(
     ,input kbd_clk
     ,input kbd_data
     ,output logic [7:0] key // 8 bit keyboard input (partiy bit stripped)
-    ,output logic dvld      // If parity bit matches, dvld is high
-    ,output logic [1:0] error_detect
+ //   ,output logic dvld      // If parity bit matches, dvld is high
+ //   ,output logic [1:0] error_detect
     );
 
     logic [8:0] kbd_buffer ; 
@@ -44,7 +44,7 @@ module ps2input(
 
         IDLE :  begin
                 bit_loc       <= '0   ; 
-                error_detect  <= '0   ; 
+     //           error_detect  <= '0   ; 
                 key           <= '0   ; 
                 if(kbd_data == '0) begin
                  if(kbd_clk_d & (~kbd_clk)) begin // negedge of kbd_clk
@@ -58,9 +58,9 @@ module ps2input(
                  if ( (bit_loc == 4'd9) && (kbd_data == '1)) begin  // 10th negedge after start is the stop conidition
                      KBD_STATE  <= STOP ; 
                  end
-                 else if (bit_loc == 4'd9) begin // Major error, buffer filled without stop condition (10th negedge of clk but data is still high)
-                    error_detect <= 2'd2 ; 
-                 end
+  //               else if (bit_loc == 4'd9) begin // Major error, buffer filled without stop condition (10th negedge of clk but data is still high)
+    //                error_detect <= 2'd2 ; 
+    //             end
                  else begin
                  kbd_buffer [bit_loc] = kbd_data ; 
                  bit_loc       = bit_loc + 1'b1  ; 
@@ -70,21 +70,21 @@ module ps2input(
 
         STOP :  begin
                 bit_loc <= '0 ; 
-                if ( (^(kbd_buffer[7:0]))  == kbd_buffer[8]  ) begin // If parity matches
-                    dvld         <= 1'b1 ; 
-                    error_detect <= 1'b0 ; 
-                end else begin
-                    dvld         <= 1'b0 ; 
-                    error_detect <= 1'b1 ; 
-                end
+  //              if ( (^(kbd_buffer[7:0]))  == kbd_buffer[8]  ) begin // If parity matches
+  //                  dvld         <= 1'b1 ; 
+  //                  error_detect <= 1'b0 ; 
+  //              end else begin
+  //                  dvld         <= 1'b0 ; 
+  //                  error_detect <= 1'b1 ; 
+  //              end
                 key [7:0]   = kbd_buffer[7:0] ; // Send buffer out
                 kbd_buffer  = '0              ; // Clear buffer
                 KBD_STATE   = IDLE            ; // Wait for new input
                 end
 
       default : begin
-                dvld          = '0   ;  
-                error_detect  = '0   ; 
+  //              dvld          = '0   ;  
+ //               error_detect  = '0   ; 
                 key           = '0   ; 
                 KBD_STATE     = IDLE ; 
                 end

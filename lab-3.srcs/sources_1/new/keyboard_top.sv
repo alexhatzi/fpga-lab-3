@@ -19,7 +19,7 @@ module kbd_top (
 
 
     logic [7:0] key_buffer  ; 
-    logic       dvld        ;
+//    logic       dvld        ;
     logic [1:0] err         ;
     logic [3:0] digit       ;
     logic       display_clk ;    
@@ -29,15 +29,15 @@ module kbd_top (
     ,   .kbd_clk      (kbd_clk     )   // Kbd clk in
     ,   .kbd_data     (raw_kbd_data)   // KBD data in (1 bit at a time)
     ,   .key          (key_buffer  )   // Filled buffer (8 bits) out
-    ,   .dvld         (dvld        )   // Dvld if parity matches
-    ,   .error_detect (err         )   // Error state : 1 if parity does not match, 2 if stop condition not detected
+   // ,   .dvld         (dvld        )   // Dvld if parity matches
+   // ,   .error_detect (err         )   // Error state : 1 if parity does not match, 2 if stop condition not detected
     ) ; 
 
     ps2decoder u_ps2decoder            // Translate buffer values to numeral representaiton (binary/decimal)
     (   .clk           (clk       )
     ,   .key           (key_buffer)
-    ,   .dvld          (dvld      )
-    ,   .error_detect  (err       )
+  //  ,   .dvld          (dvld      )
+  //  ,   .error_detect  (err       )
     ,   .digit         (digit     )
     ) ; 
 

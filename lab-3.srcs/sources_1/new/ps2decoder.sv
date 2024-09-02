@@ -22,15 +22,17 @@
 module ps2decoder (
     input  clk
    ,input  logic [7:0]  key
-   ,input  logic dvld 
-   ,input  logic  error_detect
+ //  ,input  logic dvld 
+ //  ,input  logic  error_detect
    ,output logic [3:0] digit
 );
 
 
 
 always@(posedge clk) begin
-    if (dvld) begin
+ //   if (dvld)
+ if (1)
+  begin
         case (key)
           8'h16   : digit = 4'd1   ;
           8'h1E   : digit = 4'd2   ; 

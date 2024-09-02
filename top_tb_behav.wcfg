@@ -11,58 +11,53 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="103.161 ns"></ZoomStartTime>
-      <ZoomEndTime time="246.256 ns"></ZoomEndTime>
-      <Cursor1Time time="191.348 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,000.001 ns"></ZoomEndTime>
+      <Cursor1Time time="3.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="270"></NameColumnWidth>
+      <NameColumnWidth column_width="266"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
-   <wvobject type="logic" fp_name="/top_tb/uut/u_ps2input/clk">
+   <WVObjectSize size="10" />
+   <wvobject type="logic" fp_name="/top_tb/uut/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/top_tb/uut/u_ps2input/kbd_clk">
+   <wvobject type="logic" fp_name="/top_tb/uut/kbd_clk">
       <obj_property name="ElementShortName">kbd_clk</obj_property>
       <obj_property name="ObjectShortName">kbd_clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/top_tb/uut/u_ps2input/kbd_clk_d">
-      <obj_property name="ElementShortName">kbd_clk_d</obj_property>
-      <obj_property name="ObjectShortName">kbd_clk_d</obj_property>
+   <wvobject type="logic" fp_name="/top_tb/uut/raw_kbd_data">
+      <obj_property name="ElementShortName">raw_kbd_data</obj_property>
+      <obj_property name="ObjectShortName">raw_kbd_data</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/top_tb/uut/u_ps2input/kbd_data">
-      <obj_property name="ElementShortName">kbd_data</obj_property>
-      <obj_property name="ObjectShortName">kbd_data</obj_property>
+   <wvobject type="array" fp_name="/top_tb/uut/anode">
+      <obj_property name="ElementShortName">anode[3:0]</obj_property>
+      <obj_property name="ObjectShortName">anode[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/top_tb/uut/u_ps2input/key">
-      <obj_property name="ElementShortName">key[7:0]</obj_property>
-      <obj_property name="ObjectShortName">key[7:0]</obj_property>
+   <wvobject type="array" fp_name="/top_tb/uut/cathode">
+      <obj_property name="ElementShortName">cathode[7:0]</obj_property>
+      <obj_property name="ObjectShortName">cathode[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/top_tb/uut/u_ps2input/dvld">
+   <wvobject type="array" fp_name="/top_tb/uut/key_buffer">
+      <obj_property name="ElementShortName">key_buffer[7:0]</obj_property>
+      <obj_property name="ObjectShortName">key_buffer[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/uut/dvld">
       <obj_property name="ElementShortName">dvld</obj_property>
       <obj_property name="ObjectShortName">dvld</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/top_tb/uut/u_ps2input/error_detect">
-      <obj_property name="ElementShortName">error_detect[1:0]</obj_property>
-      <obj_property name="ObjectShortName">error_detect[1:0]</obj_property>
+   <wvobject type="array" fp_name="/top_tb/uut/err">
+      <obj_property name="ElementShortName">err[1:0]</obj_property>
+      <obj_property name="ObjectShortName">err[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/top_tb/uut/u_ps2input/kbd_buffer">
-      <obj_property name="ElementShortName">kbd_buffer[8:0]</obj_property>
-      <obj_property name="ObjectShortName">kbd_buffer[8:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   <wvobject type="array" fp_name="/top_tb/uut/digit">
+      <obj_property name="ElementShortName">digit[3:0]</obj_property>
+      <obj_property name="ObjectShortName">digit[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/top_tb/uut/u_ps2input/bit_loc">
-      <obj_property name="ElementShortName">bit_loc[3:0]</obj_property>
-      <obj_property name="ObjectShortName">bit_loc[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/top_tb/uut/u_ps2input/KBD_STATE">
-      <obj_property name="ElementShortName">KBD_STATE[31:0]</obj_property>
-      <obj_property name="ObjectShortName">KBD_STATE[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/top_tb/cathode">
-      <obj_property name="ElementShortName">cathode[7:0]</obj_property>
-      <obj_property name="ObjectShortName">cathode[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/top_tb/uut/display_clk">
+      <obj_property name="ElementShortName">display_clk</obj_property>
+      <obj_property name="ObjectShortName">display_clk</obj_property>
    </wvobject>
 </wave_config>
