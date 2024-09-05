@@ -39,8 +39,8 @@ kbd_top uut
 
 
 always #1 clk = ~clk ; 
-
-
+        // testing input of '3'
+        // we want to transmit 26 ('b 0010 0110 ) + 1 bit parity (0)
 initial begin
     kbd_data = '1 ; 
     #100
@@ -54,13 +54,19 @@ initial begin
     #10 
     kbd_data = '0 ; 
     #10 
-    kbd_data = '0 ;         // 0101
+    kbd_data = '0 ;         // 0110
     #10
     kbd_data = '1 ; 
     #10 
-    kbd_data = '0 ; 
-    #10 
     kbd_data = '1 ; 
+    #10 
+    kbd_data = '0 ; 
+    #10             
+    kbd_data = '0 ; // Odd parity bit
+    #10 
+    kbd_data = '1 ; // stop condition
+    #10
+    kbd_data = '0 ;
 end
 
 
