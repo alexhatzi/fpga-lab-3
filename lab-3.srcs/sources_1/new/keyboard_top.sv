@@ -56,7 +56,6 @@ module kbd_top (
     seg_decoder u_seg_decoder           // Translate binary/decimal values to 7 segment display signals
     (   .clk           (display_clk )
     ,   .digit         (digit       )
-    ,   .error         (error_detect)
     ,   .cathode       (cathode     )
     ,   .anode         (anode       )
     ) ; 
