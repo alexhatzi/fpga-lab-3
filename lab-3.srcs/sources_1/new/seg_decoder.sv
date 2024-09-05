@@ -30,7 +30,7 @@ module seg_decoder(
     ,output logic [3:0] anode
     );
 
-
+  assign annode = 4'b1110 ; 
 
   // Convert binary to decimal 7 segment display 
   always @ (posedge clk) begin
